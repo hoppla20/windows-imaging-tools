@@ -395,7 +395,11 @@ function Convert-VirtualDisk {
         Write-Log "Qcow2 compression has been enabled."
         $qemuParams += @("-c", "-W", "-m16")
     }
-    $qemuParams += @("-O", $format, $vhdPath, $outPath)
+    $qemuParams += @("-O", $format)
+    if ($format -eq "vmdk") {
+        $qemuParams += @("-o", "subformat=streamOptimized")
+    }
+    $qemuParams += @($vhdPath, $outPath)
     Write-Log "Converting virtual disk image from $vhdPath to $outPath..."
     Execute-Retry {
         Start-Executable $qemuParams
