@@ -23,7 +23,7 @@ try
             # Note: this command will generate a reboot.
             # "/qn REBOOT=ReallySuppress" does not seem to work properly
             $Host.UI.RawUI.WindowTitle = "Installing VMware tools..."
-            E:\setup64.exe `/s `/v `/qn `/l `"$ENV:Temp\vmware_tools_install.log`"
+            D:\setup64.exe `/s `/v `/qn `/l `"$ENV:Temp\vmware_tools_install.log`"
             if (!$?) { throw "VMware tools setup failed" }
         }
         "KVMKVMKVM"
